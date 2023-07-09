@@ -67,6 +67,9 @@ DATA_4 = {
 
 @pytest.fixture
 def data():
+    """
+    Фикстура для тестовых данных
+    """
     transaction_1 = Transaction(DATA_1['id'], DATA_1['state'], DATA_1['date'], DATA_1['operationAmount']['amount'],
                                 DATA_1['operationAmount']['currency']['name'],
                                 DATA_1['operationAmount']['currency']['code'],
@@ -91,19 +94,31 @@ def data():
 
 
 def test_get_date(data):
+    """
+    Тест метода, который возвращает дату
+    """
     assert data[0].get_date() == '26.08.2019 '
 
 
 def test_hiding_sender(data):
+    """
+    Тест метода, который скрывает номер карты/счета отправителя
+    """
     assert data[0].hiding_sender() == 'Maestro 1596 83** **** 5199 -> '
     assert data[1].hiding_sender() == 'Счет **6952 -> '
     assert data[2].hiding_sender() == '-> '
 
 
 def test_hiding_recipient(data):
+    """
+    Тест метода, который скрывает номер карты/счета получателя
+    """
     assert data[0].hiding_recipient() == "Счет **9589"
     assert data[3].hiding_recipient() == "Visa Platinum 8990 92** **** 5229"
 
 
 def test_get_currency(data):
+    """
+    Тест метода, который возвращает сумму перевода и валюту
+    """
     assert data[0].get_currency() == "31957.58 руб."
