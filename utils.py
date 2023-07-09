@@ -51,3 +51,8 @@ def transaction_in_class(list_):
         list_of_classes.append(transaction)
     # Выводим список экземпляров
     return list_of_classes
+
+
+def main():
+    for transaction in transaction_in_class(get_last_transactions()):
+        print(transaction)
