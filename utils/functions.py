@@ -2,8 +2,8 @@ import json
 from utils import classes
 import os
 
-path_ = os.path.join('Data', 'operations.json')
-DATA = json.load(open(path_, encoding='utf-8'))
+path_ = os.path.abspath('operations.json')
+DATA = json.load(open(os.path.join(path_),  encoding='utf-8'))
 
 
 def get_last_transactions():
@@ -60,6 +60,3 @@ def transaction_in_class():
 def main():
     for transaction in transaction_in_class():
         print(transaction)
-
-
-main()
