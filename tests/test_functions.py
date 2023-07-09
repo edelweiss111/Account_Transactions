@@ -3,6 +3,9 @@ from utils import functions
 
 
 def test_get_last_transactions():
+    """
+    Тестирование функции, которая возвращает список из 5 последних выполненных операций, начиная с последней операции
+    """
     assert functions.get_last_transactions() == [
         {'id': 667307132, 'state': 'EXECUTED', 'date': '2019-07-13T18:51:29.313309',
          'operationAmount': {'amount': '97853.86', 'currency': {'name': 'руб.', 'code': 'RUB'}},
@@ -21,3 +24,14 @@ def test_get_last_transactions():
         {'id': 179194306, 'state': 'EXECUTED', 'date': '2019-05-19T12:51:49.023880',
          'operationAmount': {'amount': '6381.58', 'currency': {'name': 'USD', 'code': 'USD'}},
          'description': 'Перевод организации', 'from': 'МИР 5211277418228469', 'to': 'Счет 58518872592028002662'}]
+
+
+def test_transaction_in_class():
+    """
+    Тестирование функции, которая делает из элементов прошлого списка экземпляры классов
+    """
+    assert str(type(functions.transaction_in_class()[0])) == "<class 'utils.classes.Transaction'>"
+    assert str(type(functions.transaction_in_class()[1])) == "<class 'utils.classes.Transaction'>"
+    assert str(type(functions.transaction_in_class()[2])) == "<class 'utils.classes.Transaction'>"
+    assert str(type(functions.transaction_in_class()[3])) == "<class 'utils.classes.Transaction'>"
+    assert str(type(functions.transaction_in_class()[4])) == "<class 'utils.classes.Transaction'>"
