@@ -1,7 +1,9 @@
 import json
-import classes
+from utils import classes
+import os
 
-DATA = json.load(open('operations.json', encoding='utf-8'))
+path_ = os.path.join('Data', 'operations.json')
+DATA = json.load(open(path_, encoding='utf-8'))
 
 
 def get_last_transactions():
@@ -22,11 +24,12 @@ def get_last_transactions():
     return necessary_date[:5]
 
 
-def transaction_in_class(list_):
+def transaction_in_class():
     """
     Принимает список транзакций и возвращает список экземпляров класса Transaction
     """
     # Создаем пустой список для будущих экземпляров
+    list_ = get_last_transactions()
     list_of_classes = []
 
     # Проходимся циклом по последним транзакцим, задаем аргументы для экземпляра
@@ -46,7 +49,8 @@ def transaction_in_class(list_):
         recipient = element['to']
 
         # Инициализируем экземпляр
-        transaction = classes.Transaction(id_, state, date, amount, name_currency, code_currency, description, sender, recipient)
+        transaction = classes.Transaction(id_, state, date, amount, name_currency, code_currency, description, sender,
+                                          recipient)
         # Добавляем его в список
         list_of_classes.append(transaction)
     # Выводим список экземпляров
@@ -54,5 +58,8 @@ def transaction_in_class(list_):
 
 
 def main():
-    for transaction in transaction_in_class(get_last_transactions()):
+    for transaction in transaction_in_class():
         print(transaction)
+
+
+main()
