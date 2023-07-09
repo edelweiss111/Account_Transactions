@@ -1,5 +1,4 @@
-from utils import main
-
+from utils.functions import main
 
 if __name__ == '__main__':
     main()
