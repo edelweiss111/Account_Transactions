@@ -3,10 +3,10 @@ from utils import classes
 import os
 
 path_ = os.path.abspath('operations.json')
-DATA = json.load(open(os.path.join(path_),  encoding='utf-8'))
+DATA = json.load(open(os.path.join(path_), encoding='utf-8'))
 
 
-def get_last_transactions():
+def get_last_transaction():
     """
     Возвращает список из 5 последних выполненных операций, начиная с последней операции
     """
@@ -20,8 +20,9 @@ def get_last_transactions():
         # Если ключ 'state' равен значению 'EXECUTED', то добавляем этот элемент в список выполненных операций
         if transaction['state'] == 'EXECUTED':
             necessary_date.append(transaction)
-    # Возвращаем последние 5 выполненных операций
-    return necessary_date[:5]
+
+    # Сортируем список по дате и возвращаем 5 последних выполненных операций, начиная с последней
+    return sorted(necessary_date, key=lambda element: element['date'])[-1:-6:-1]
 
 
 def transaction_in_class():
@@ -29,7 +30,7 @@ def transaction_in_class():
     Принимает список транзакций и возвращает список экземпляров класса Transaction
     """
     # Создаем пустой список для будущих экземпляров
-    list_ = get_last_transactions()
+    list_ = get_last_transaction()
     list_of_classes = []
 
     # Проходимся циклом по последним транзакцим, задаем аргументы для экземпляра
@@ -58,5 +59,9 @@ def transaction_in_class():
 
 
 def main():
+    """
+    Основная функция проекта
+    """
+    # Печать каждого элемента в списке классов
     for transaction in transaction_in_class():
         print(transaction)
