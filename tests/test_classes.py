@@ -1,6 +1,7 @@
 import pytest
 from utils.classes import Transaction
 
+# Тестовые данные
 DATA_1 = {
     "id": 441945886,
     "state": "EXECUTED",
